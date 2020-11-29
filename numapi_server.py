@@ -114,4 +114,4 @@ def api_main(args, subpath):
 
 
 if __name__ == '__main__':
-    app.run(host="192.168.0.116", port=5555, threaded=True)
+    app.run(host="localhost", port=5555, threaded=True)

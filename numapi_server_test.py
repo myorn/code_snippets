@@ -3,7 +3,7 @@ import requests
 from random import randint
 
 
-API_HOST = 'http://192.168.0.116:5555'
+API_HOST = 'http://localhost:5555'
 PROXY = {'http': 'http://192.168.0.3:8080'}
 
 
