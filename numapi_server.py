@@ -1,5 +1,6 @@
 """My attempt at numbersAPI."""
 import urllib.parse as urlparse
+from urllib.error import HTTPError
 # Please remove or change proxy before running
 from urllib.request import (
     ProxyHandler, build_opener, install_opener, urlopen
@@ -102,12 +103,15 @@ def api_main(args, subpath):
     url_parts = list(urlparse.urlparse(url))
     url_parts[4] = urlparse.urlencode({'json': '', **args})
     # getting json response from numsApi
-    resp = urlopen(urlparse.urlunparse(url_parts)).read()
-    return Response(
-                    response=resp,
-                    mimetype='application/json',
-    )
+    try:
+        resp = urlopen(urlparse.urlunparse(url_parts)).read()
+        return Response(
+            response=resp,
+            mimetype='application/json',
+        )
+    except HTTPError as e:
+        abort(422, messages={'_schema': [f'Wrong parameters\n{e}']})
 
 
 if __name__ == '__main__':
-    app.run(host="localhost", port=5555, threaded=True)
+    app.run(host="192.168.0.116", port=5555, threaded=True)
