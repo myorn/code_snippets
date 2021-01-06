@@ -15,9 +15,9 @@ from webargs.flaskparser import abort, use_args
 
 
 app = Flask(__name__)
-proxy_support = ProxyHandler({'http': 'http://192.168.0.3:8080'})
-opener = build_opener(proxy_support)
-install_opener(opener)
+# proxy_support = ProxyHandler({'http': 'http://192.168.0.3:8080'})
+# opener = build_opener(proxy_support)
+# install_opener(opener)
 
 
 def is_int(x):
@@ -114,4 +114,4 @@ def api_main(args, subpath):
 
 
 if __name__ == '__main__':
-    app.run(host="localhost", port=5555, threaded=True)
+    app.run(host="localhost", port=5000, threaded=True)
